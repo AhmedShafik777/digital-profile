@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف التعريفي الرقمي الذكي</title>
+
+    <!-- ربط خط Cairo من جوجل ليعطي مظهراً احترافياً للنصوص العربية -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- ربط مكتبة الأيقونات الشهيرة FontAwesome لإظهار أيقونات الهاتف والواتساب والسوشيال ميديا -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+
+    <!-- ربط ملف التصميم والألوان الذي سننشئه في الخطوة القادمة -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- الحاوية الرئيسية للموقع وتحديد أقصى عرض يناسب الهواتف -->
+    <div class="card-container">
+
+        <!-- 1. قسم الهيدر: يحتوي على الصورة الشخصية أو اللوجو والاسم والنبذة -->
+        <header class="profile-header">
+            <div class="avatar-wrapper">
+                <img id="profile-img" src="" alt="الشعار أو الصورة الشخصية">
+            </div>
+            <h1 id="profile-name">جاري تحميل الاسم...</h1>
+            <p id="profile-title" class="subtitle"></p>
+            <p id="profile-about" class="bio-text"></p>
+        </header>
+
+        <!-- 2. قسم أزرار الاتصال السريع التفاعلية -->
+        <section class="quick-buttons">
+            <a id="btn-phone" href="#" class="action-btn phone"><i class="fa-solid fa-phone"></i> اتصال مباشر</a>
+            <a id="btn-whatsapp" href="#" class="action-btn whatsapp" target="_blank"><i
+                    class="fa-brands fa-whatsapp"></i> مراسلة واتساب</a>
+            <a id="btn-email" href="#" class="action-btn email"><i class="fa-solid fa-envelope"></i> البريد
+                الإلكتروني</a>
+            <a id="btn-website" href="#" class="action-btn website" target="_blank"><i class="fa-solid fa-globe"></i>
+                الموقع الإلكتروني</a>
+        </section>
+
+        <!-- 3. قسم أيقونات شبكات التواصل الاجتماعي (ستظهر هنا ديناميكياً) -->
+        <section class="social-icons-box" id="social-container"></section>
+
+        <!-- 4. قسم التبويبات (Tabs) للتنقل بين المنتجات والمقالات -->
+        <section class="tabs-area">
+            <div class="tabs-navigation">
+                <button class="tab-btn active" onclick="switchTab('products-tab')"><i class="fa-solid fa-box-open"></i>
+                    الخدمات والمنتجات</button>
+                <button class="tab-btn" onclick="switchTab('articles-tab')"><i class="fa-solid fa-newspaper"></i>
+                    المقالات والمعلومات</button>
+            </div>
+
+            <div class="tabs-content">
+                <!-- محتوى تبويب المنتجات -->
+                <div id="products-tab" class="tab-panel active">
+                    <div id="products-container" class="list-wrapper"></div>
+                </div>
+
+                <!-- محتوى تبويب المقالات -->
+                <div id="articles-tab" class="tab-panel">
+                    <div id="articles-container" class="list-wrapper"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. قسم الـ QR Code التفاعلي لمشاركة الرابط -->
+        <section class="qr-code-section">
+            <h3>مسح الرمز لمشاركة الملف</h3>
+            <div id="qrcode"></div>
+        </section>
+
+        <!-- 6. التذييل: زر حفظ جهة الاتصال للهاتف مباشرة وحقوق النشر -->
+        <footer class="profile-footer">
+            <a id="btn-vcard" href="contact.vcf" class="action-btn vcard-save" download><i
+                    class="fa-solid fa-user-plus"></i> حفظ في جهات الاتصال</a>
+            <p class="footer-credits">© جميع الحقوق محفوظة للقالب الذكي</p>
+        </footer>
+
+    </div>
+
+    <!-- استدعاء مكتبة توليد الـ QR Code تلقائياً داخل المتصفح مجاناً -->
+    <script src="https://cloudflare.com"></script>
+
+    <!-- ربط ملف البيانات الذي أنشأته في المرحلة الأولى -->
+    <script src="data.js"></script>
+
+    <!-- ملف التشغيل الذي سنربط به الواجهة بالبيانات لاحقاً -->
+    <script src="script.js"></script>
+</body>
+
+</html>

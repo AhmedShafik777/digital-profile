@@ -1,0 +1,251 @@
+/* إعداد المتغيرات اللونية الأساسية لسهولة التعديل مستقبلاً */
+:root {
+    --main-blue: #2563eb;
+    --wp-green: #25d366;
+    --dark-gray: #1f2937;
+    --light-bg: #f3f4f6;
+    --white: #ffffff;
+}
+
+/* تصغير الهوامش الافتراضية للمتصفح وتحديد الخط الافتراضي كـ Cairo */
+* {
+    box-shadow: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--dark-gray);
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* تصميم الحاوية الكرتونية للموقع لتشبه أبعاد شاشة الجوال الاحترافية */
+.card-container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--white);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* تنسيق الهيدر والصورة الشخصية الدائرية */
+.profile-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.avatar-wrapper img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--main-blue);
+    margin-bottom: 12px;
+}
+
+.profile-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-header .subtitle {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+.profile-header .bio-text {
+    font-size: 0.9rem;
+    margin-top: 12px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* تنسيق الأزرار وتأثير الضغط والتفاعل للمستخدم */
+.quick-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: transform 0.1s ease;
+}
+
+.action-btn:active {
+    transform: scale(0.97);
+    /* تأثير فيزيائي خفيف عند الضغط بالإصبع */
+}
+
+/* ألوان الأزرار المتنوعة */
+.phone {
+    background-color: var(--main-blue);
+    color: var(--white);
+}
+
+.whatsapp {
+    background-color: var(--wp-green);
+    color: var(--white);
+}
+
+.email {
+    background-color: #4b5563;
+    color: var(--white);
+}
+
+.website {
+    background-color: #111827;
+    color: var(--white);
+}
+
+.vcard-save {
+    background-color: #d97706;
+    color: var(--white);
+    margin-top: 24px;
+}
+
+/* تنسيق صندوق أيقونات السوشيال ميديا الدائرية */
+.social-icons-box {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.social-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #374151;
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+/* تصميم نظام التبويبات والمجلدات للمنتجات والمقالات */
+.tabs-area {
+    margin-top: 24px;
+}
+
+.tabs-navigation {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 6px;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    color: var(--main-blue);
+    border-bottom: 3px solid var(--main-blue);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* تنسيق كروت قائمة عرض المنتجات والمقالات مصنفة داخل مجلدات */
+.list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item-card {
+    display: flex;
+    background: #f9fafb;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.item-card img {
+    width: 95px;
+    height: 95px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: #111827;
+}
+
+.card-content p {
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* تنسيق مساحة الـ QR Code الافتراضية للربط الدائم */
+.qr-code-section {
+    text-align: center;
+    margin: 28px 0 12px 0;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 14px;
+    border: 1px dashed #d1d5db;
+}
+
+.qr-code-section h3 {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    color: #4b5563;
+}
+
+#qrcode {
+    display: inline-block;
+    padding: 8px;
+    background: var(--white);
+    border-radius: 8px;
+}
+
+.footer-credits {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 16px;
+}
