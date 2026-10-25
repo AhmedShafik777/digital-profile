@@ -3,95 +3,145 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الملف التعريفي الرقمي الذكي</title>
-
-    <!-- ربط خط Cairo من جوجل ليعطي مظهراً احترافياً للنصوص العربية -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- ربط مكتبة الأيقونات الشهيرة FontAwesome لإظهار أيقونات الهاتف والواتساب والسوشيال ميديا -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-
-    <!-- ربط ملف التصميم والألوان الذي سننشئه في الخطوة القادمة -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f5">
+    <meta name="description"
+        content="الملف الرقمي لأحمد شفيق إسماعيل — مراقب جودة ومشرف دعاية وإعلان. تواصل واكتشف خدمات الدعاية والطباعة.">
+    <title>أحمد شفيق إسماعيل | الملف الرقمي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="page-shell">
+        <nav class="topbar" aria-label="التنقل الرئيسي">
+            <a class="brand" href="#home" aria-label="العودة إلى بداية الصفحة">
+                <span class="brand-mark" aria-hidden="true">
+                    <img class="brand-logo" alt="">
+                    <span class="brand-fallback">أ</span>
+                </span>
+                <span>الملف <strong>الرقمي</strong></span>
+            </a>
+            <a class="topbar-link" href="#contact">لنتواصل <span aria-hidden="true">↗</span></a>
+        </nav>
 
-    <!-- الحاوية الرئيسية للموقع وتحديد أقصى عرض يناسب الهواتف -->
-    <div class="card-container">
+        <main>
+            <section class="hero panel" id="home" aria-labelledby="profileName">
+                <div class="hero-copy">
+                    <span class="eyebrow"><span class="status-dot"></span> متاح للتعاون</span>
+                    <h1 id="profileName"></h1>
+                    <p class="profile-title" id="profileTitle"></p>
+                    <p class="profile-about" id="profileAbout"></p>
 
-        <!-- 1. قسم الهيدر: يحتوي على الصورة الشخصية أو اللوجو والاسم والنبذة -->
-        <header class="profile-header">
-            <div class="avatar-wrapper">
-                <img id="profile-img" src="" alt="الشعار أو الصورة الشخصية">
-            </div>
-            <h1 id="profile-name">جاري تحميل الاسم...</h1>
-            <p id="profile-title" class="subtitle"></p>
-            <p id="profile-about" class="bio-text"></p>
-        </header>
+                    <div class="hero-actions">
+                        <a id="whatsappBtn" class="button button-primary" href="#">
+                            <span class="button-icon" aria-hidden="true">↗</span> تواصل معي
+                        </a>
+                        <a id="vcardBtn" class="button button-light" href="#">
+                            <span class="button-icon" aria-hidden="true">＋</span> احفظ جهة الاتصال
+                        </a>
+                    </div>
 
-        <!-- 2. قسم أزرار الاتصال السريع التفاعلية -->
-        <section class="quick-buttons">
-            <a id="btn-phone" href="#" class="action-btn phone"><i class="fa-solid fa-phone"></i> اتصال مباشر</a>
-            <a id="btn-whatsapp" href="#" class="action-btn whatsapp" target="_blank"><i
-                    class="fa-brands fa-whatsapp"></i> مراسلة واتساب</a>
-            <a id="btn-email" href="#" class="action-btn email"><i class="fa-solid fa-envelope"></i> البريد
-                الإلكتروني</a>
-            <a id="btn-website" href="#" class="action-btn website" target="_blank"><i class="fa-solid fa-globe"></i>
-                الموقع الإلكتروني</a>
-        </section>
-
-        <!-- 3. قسم أيقونات شبكات التواصل الاجتماعي (ستظهر هنا ديناميكياً) -->
-        <section class="social-icons-box" id="social-container"></section>
-
-        <!-- 4. قسم التبويبات (Tabs) للتنقل بين المنتجات والمقالات -->
-        <section class="tabs-area">
-            <div class="tabs-navigation">
-                <button class="tab-btn active" onclick="switchTab('products-tab')"><i class="fa-solid fa-box-open"></i>
-                    الخدمات والمنتجات</button>
-                <button class="tab-btn" onclick="switchTab('articles-tab')"><i class="fa-solid fa-newspaper"></i>
-                    المقالات والمعلومات</button>
-            </div>
-
-            <div class="tabs-content">
-                <!-- محتوى تبويب المنتجات -->
-                <div id="products-tab" class="tab-panel active">
-                    <div id="products-container" class="list-wrapper"></div>
+                    <div class="hero-socials" id="socialLinks" aria-label="روابط التواصل الاجتماعي"></div>
                 </div>
-
-                <!-- محتوى تبويب المقالات -->
-                <div id="articles-tab" class="tab-panel">
-                    <div id="articles-container" class="list-wrapper"></div>
+                <div class="hero-visual">
+                    <div class="photo-frame">
+                        <img id="profileImage" src="" alt="" fetchpriority="high">
+                    </div>
+                    <div class="photo-caption">
+                        <span class="caption-mark" aria-hidden="true">✳</span>
+                        <span><strong>أفكار تصنع فرقًا</strong><small>من الاستراتيجية إلى النتائج</small></span>
+                    </div>
+                    <span class="hero-orbit orbit-one" aria-hidden="true"></span>
+                    <span class="hero-orbit orbit-two" aria-hidden="true"></span>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 5. قسم الـ QR Code التفاعلي لمشاركة الرابط -->
-        <section class="qr-code-section">
-            <h3>مسح الرمز لمشاركة الملف</h3>
-            <div id="qrcode"></div>
-        </section>
+            <section class="contact-strip" id="contact" aria-label="طرق التواصل">
+                <a class="contact-item" id="callBtn" href="#">
+                    <span class="contact-icon icon-call" aria-hidden="true">⌕</span>
+                    <span><small>اتصل بي</small><strong>مكالمة مباشرة</strong></span>
+                    <span class="contact-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="contact-item" id="emailBtn" href="#">
+                    <span class="contact-icon icon-email" aria-hidden="true">✉</span>
+                    <span><small>راسلني</small><strong>البريد الإلكتروني</strong></span>
+                    <span class="contact-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="contact-item" id="websiteBtn" href="#" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-icon icon-web" aria-hidden="true">◎</span>
+                    <span><small>اكتشف المزيد</small><strong>موقعي الإلكتروني</strong></span>
+                    <span class="contact-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="contact-item" id="locationBtn" href="#" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-icon icon-location" aria-hidden="true">⌖</span>
+                    <span><small>موقعي</small><strong>افتح الخريطة</strong></span>
+                    <span class="contact-arrow" aria-hidden="true">↗</span>
+                </a>
+            </section>
 
-        <!-- 6. التذييل: زر حفظ جهة الاتصال للهاتف مباشرة وحقوق النشر -->
-        <footer class="profile-footer">
-            <a id="btn-vcard" href="contact.vcf" class="action-btn vcard-save" download><i
-                    class="fa-solid fa-user-plus"></i> حفظ في جهات الاتصال</a>
-            <p class="footer-credits">© جميع الحقوق محفوظة للقالب الذكي</p>
+            <section class="content-section" id="services" aria-labelledby="servicesHeading">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">ما أقدمه</span>
+                        <h2 id="servicesHeading">خدمات مصممة <span>للنمو</span></h2>
+                    </div>
+                    <p>حلول عملية تساعد مشروعك على الوصول إلى جمهوره وتحقيق أثر حقيقي.</p>
+                </div>
+                <div class="category-list" id="categoryButtons" aria-label="تصنيفات الخدمات"></div>
+                <div class="product-grid" id="productsList" aria-live="polite"></div>
+                <p class="content-message" id="productsMessage" role="status" hidden></p>
+            </section>
+
+            <section class="content-section articles-section" id="articles" aria-labelledby="articlesHeading">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">أفكار وخبرات</span>
+                        <h2 id="articlesHeading">من <span>المقالات</span></h2>
+                    </div>
+                    <p>رؤى قصيرة وخطوات قابلة للتطبيق في عالم التسويق الرقمي.</p>
+                </div>
+                <div class="article-grid" id="articlesList" aria-live="polite"></div>
+                <p class="content-message" id="articlesMessage" role="status" hidden></p>
+            </section>
+
+            <section class="share-panel panel" aria-labelledby="shareHeading">
+                <div class="share-copy">
+                    <span class="section-kicker">خلي التواصل أسهل</span>
+                    <h2 id="shareHeading">ملفي معك، <span>بكل سهولة.</span></h2>
+                    <p>امسح رمز QR أو شارك الرابط مباشرة، وخلّنا نبدأ حديثنا.</p>
+                    <button class="button button-primary share-button" id="shareLink" type="button">
+                        <span class="button-icon" aria-hidden="true">↗</span> شارك الملف
+                    </button>
+                    <p class="share-feedback" id="shareFeedback" role="status" aria-live="polite"></p>
+                </div>
+                <div class="qr-wrap">
+                    <div id="qrcode" aria-label="رمز QR لرابط هذه الصفحة"></div>
+                    <button class="qr-download" id="downloadQr" type="button">تحميل الرمز <span
+                            aria-hidden="true">↓</span></button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <a class="brand footer-brand" href="#home">
+                <span class="brand-mark" aria-hidden="true">
+                    <span class="brand-fallback">أ</span>
+                </span>
+                <span>الملف <strong>الرقمي</strong></span>
+            </a>
+            <p>صُمّم ليجمع كل ما تحتاجه في مكان واحد.</p>
+            <span class="copyright">© <span id="currentYear"></span> جميع الحقوق محفوظة</span>
         </footer>
-
     </div>
 
-    <!-- استدعاء مكتبة توليد الـ QR Code تلقائياً داخل المتصفح مجاناً -->
-    <script src="https://cloudflare.com"></script>
-
-    <!-- ربط ملف البيانات الذي أنشأته في المرحلة الأولى -->
     <script src="data.js"></script>
-
-    <!-- ملف التشغيل الذي سنربط به الواجهة بالبيانات لاحقاً -->
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

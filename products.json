@@ -1,0 +1,71 @@
+{
+  "categories": [
+    {
+      "id": "strategy",
+      "name": "استراتيجية ونمو",
+      "items": [
+        {
+          "title": "استراتيجية التسويق الرقمي",
+          "description": "خطة واضحة تحدد جمهورك وقنواتك وأولوياتك للوصول إلى نتائج قابلة للقياس.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": "mailto:info@example.com?subject=%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9"
+        },
+        {
+          "title": "جلسة استشارية فردية",
+          "description": "مساحة مركزة لمراجعة تحديات مشروعك والخروج بخطوات عملية قابلة للتنفيذ.",
+          "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": "https://wa.me/966500000000"
+        },
+        {
+          "title": "تحليل السوق والمنافسين",
+          "description": "فهم أعمق للسوق والفرص ونقاط التميز التي تمنح علامتك مكانًا مختلفًا.",
+          "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "المحتوى والهوية",
+      "items": [
+        {
+          "title": "بناء الهوية الرقمية",
+          "description": "تجربة متناسقة تعكس شخصية مشروعك وتبني الثقة في كل نقطة تواصل.",
+          "image": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": ""
+        },
+        {
+          "title": "خطة محتوى شهرية",
+          "description": "أفكار وجدول نشر عملي يربط بين احتياجات جمهورك وأهداف مشروعك.",
+          "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "الإعلانات والأداء",
+      "items": [
+        {
+          "title": "إدارة الحملات الإعلانية",
+          "description": "إعداد وتحسين الحملات لزيادة الوصول وتحقيق أفضل استفادة من الميزانية.",
+          "image": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": ""
+        },
+        {
+          "title": "تحسين تجربة التحويل",
+          "description": "تحليل رحلة العميل وتبسيطها لتحويل المزيد من الزيارات إلى فرص ومبيعات.",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85",
+          "price": "",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

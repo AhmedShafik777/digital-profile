@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>تعديل الملف الرقمي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="products">
+        <h1>تعديل بيانات الملف</h1>
+
+        <label>الاسم</label>
+        <input id="name" type="text">
+
+        <label>المسمى</label>
+        <input id="title" type="text">
+
+        <label>الوصف</label>
+        <textarea id="about"></textarea>
+
+        <label>رقم الهاتف</label>
+        <input id="phone" type="text">
+
+        <label>رقم واتساب</label>
+        <input id="whatsapp" type="text">
+
+        <label>البريد الإلكتروني</label>
+        <input id="email" type="text">
+
+        <label>رابط الموقع</label>
+        <input id="website" type="text">
+
+        <button id="exportData">تصدير ملف data.js</button>
+    </section>
+
+    <script>
+        document.getElementById("exportData").addEventListener("click", () => {
+            const data = {
+                name: document.getElementById("name").value,
+                title: document.getElementById("title").value,
+                about: document.getElementById("about").value,
+                phone: document.getElementById("phone").value,
+                whatsapp: document.getElementById("whatsapp").value,
+                email: document.getElementById("email").value,
+                website: document.getElementById("website").value
+            };
+
+            const content = `const profile = ${JSON.stringify(data, null, 2)};`;
+
+            const blob = new Blob([content], { type: "text/javascript" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "data.js";
+            link.click();
+        });
+    </script>
+</body>
+
+</html>

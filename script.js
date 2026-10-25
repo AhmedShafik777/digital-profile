@@ -1,130 +1,309 @@
-// محرك التشغيل الديناميكي للبطاقة الذكية - يربط الواجهة بالبيانات تلقائياً
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. تطبيق النظام اللوني المختار من ملف البيانات على الموقع بالكامل
-    if (dynamicProfileConfig.metadata && dynamicProfileConfig.metadata.themeColor) {
-        document.documentElement.style.setProperty('--main-blue', dynamicProfileConfig.metadata.themeColor);
-    }
+const byId = (id) => document.getElementById(id);
 
-    // 2. قراءة وحقن البيانات الأساسية للهوية (الاسم، الوظيفة، النبذة، الصورة)
-    document.getElementById("profile-name").textContent = dynamicProfileConfig.identity.name;
-    document.getElementById("profile-title").textContent = dynamicProfileConfig.identity.subtitle;
-    document.getElementById("profile-about").textContent = dynamicProfileConfig.identity.bio;
-    document.getElementById("profile-img").src = dynamicProfileConfig.identity.logoOrAvatar;
-
-    // 3. ربط أزرار الاتصال السريع بالقيم البرمجية الخاصة بها
-    const contact = dynamicProfileConfig.quickContact;
-    
-    // ربط زر الاتصال المباشر
-    if (contact.phone) {
-        document.getElementById("btn-phone").href = `tel:${contact.phone}`;
-    } else {
-        document.getElementById("btn-phone").style.display = "none"; // إخفاء الزر إذا كان فارغاً
-    }
-
-    // ربط زر الواتساب المباشر
-    if (contact.whatsapp) {
-        document.getElementById("btn-whatsapp").href = `https://wa.me{contact.whatsapp}`;
-    } else {
-        document.getElementById("btn-whatsapp").style.display = "none";
-    }
-
-    // ربط زر البريد الإلكتروني
-    if (contact.email) {
-        document.getElementById("btn-email").href = `mailto:${contact.email}`;
-    } else {
-        document.getElementById("btn-email").style.display = "none";
-    }
-
-    // ربط زر الموقع الإلكتروني
-    if (contact.website) {
-        document.getElementById("btn-website").href = contact.website;
-    } else {
-        document.getElementById("btn-website").style.display = "none";
-    }
-
-    // 4. بناء أيقونات السوشيال ميديا ديناميكياً (تظهر فقط الشبكات الممتلئة بالروابط)
-    const socialContainer = document.getElementById("social-container");
-    
-    // خريطة لربط اسم الشبكة بالأيقونة الخاصة بها من مكتبة FontAwesome
-    const iconsMap = {
-        facebook: "fa-brands fa-facebook-f",
-        instagram: "fa-brands fa-instagram",
-        linkedin: "fa-brands fa-linkedin-in",
-        twitter: "fa-brands fa-x-twitter",
-        tiktok: "fa-brands fa-tiktok",
-        youtube: "fa-brands fa-youtube"
-    };
-
-    // المرور على كل شبكة في ملف البيانات وفحصها
-    for (const [platform, url] of Object.entries(dynamicProfileConfig.socialLinks)) {
-        if (url) { // إذا كان هناك رابط ممتلئ للشبكة
-            const anchor = document.createElement("a");
-            anchor.href = url;
-            anchor.className = "social-circle";
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="${iconsMap[platform]}"></i>`;
-            socialContainer.appendChild(anchor); // إضافة الأيقونة للواجهة
-        }
-    }
-
-    // 5. تحميل وقراءة مجلد المنتجات والخدمات وعرضها ككروت مصنفة
-    const productsContainer = document.getElementById("products-container");
-    if (dynamicProfileConfig.products && dynamicProfileConfig.products.length > 0) {
-        dynamicProfileConfig.products.forEach(product => {
-            productsContainer.innerHTML += `
-                <div class="item-card">
-                    <img src="${product.image}" alt="${product.title}">
-                    <div class="card-content">
-                        <h3>${product.title}</h3>
-                        <p><strong>التصنيف:</strong> ${product.category}</p>
-                        <p>${product.description}</p>
-                        <p style="color: var(--main-blue); font-weight: bold; margin-top: 4px;">${product.price}</p>
-                    </div>
-                </div>
-            `;
-        });
-    } else {
-        productsContainer.innerHTML = "<p style='text-align:center; color:#9ca3af; font-size:0.85rem;'>لا توجد منتجات حالياً</p>";
-    }
-
-    // 6. تحميل وقراءة مجلد المقالات والمعلومات وعرضها ككروت
-    const articlesContainer = document.getElementById("articles-container");
-    if (dynamicProfileConfig.articles && dynamicProfileConfig.articles.length > 0) {
-        dynamicProfileConfig.articles.forEach(article => {
-            articlesContainer.innerHTML += `
-                <div class="item-card">
-                    <img src="${article.image}" alt="${article.title}">
-                    <div class="card-content">
-                        <h3>${article.title}</h3>
-                        <p style="font-size:0.75rem; color:#9ca3af; margin-bottom:4px;">تاريخ النشر: ${article.date}</p>
-                        <p>${article.summary}</p>
-                    </div>
-                </div>
-            `;
-        });
-    } else {
-        articlesContainer.innerHTML = "<p style='text-align:center; color:#9ca3af; font-size:0.85rem;'>لا توجد مقالات حالياً</p>";
-    }
-
-    // 7. استخدام رابط تجريبي مؤقت لضمان توليد الـ QR Code محلياً بشكل سليم
-    new QRCode(document.getElementById("qrcode"), {
-        text: "https://google.com", 
-        width: 150,
-        height: 150,
-        colorDark : "#111827",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.M
-    });
-});
-
-// دالة ميكانيكية للتنقل اللحظي السريع بين تبويبي المنتجات والمقالات (تم تعديل المسمى هنا لـ tab-btn)
-function switchTab(tabId) {
-    // إخفاء كل اللوحات وإزالة التنشيط عن كل الأزرار
-    document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-    
-    // تنشيط اللوحة المطلوبة والزر المضغوط عليه حالياً
-    document.getElementById(tabId).classList.add("active");
-    event.currentTarget.classList.add("active");
+function setText(id, value) {
+  byId(id).textContent = value || "";
 }
+
+function setExternalLink(element, url) {
+  if (!url) {
+    element.hidden = true;
+    return;
+  }
+  element.href = url;
+}
+
+function escapeVCard(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\\/g, "\\\\")
+    .replace(/\r?\n/g, "\\n")
+    .replace(/,/g, "\\,")
+    .replace(/;/g, "\\;");
+}
+
+function createVCard() {
+  const lines = [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    "N;CHARSET=UTF-8:;;;;",
+    `FN;CHARSET=UTF-8:${escapeVCard(profile.name)}`
+  ];
+
+  if (profile.type === "company") {
+    lines.push(`ORG;CHARSET=UTF-8:${escapeVCard(profile.name)}`);
+  }
+  if (profile.title) lines.push(`TITLE;CHARSET=UTF-8:${escapeVCard(profile.title)}`);
+  if (profile.phone) lines.push(`TEL;TYPE=CELL:${escapeVCard(profile.phone)}`);
+  if (profile.email) lines.push(`EMAIL;TYPE=INTERNET:${escapeVCard(profile.email)}`);
+  if (profile.website) lines.push(`URL:${escapeVCard(profile.website)}`);
+
+  lines.push("END:VCARD");
+  return `${lines.join("\r\n")}\r\n`;
+}
+
+function renderProfile() {
+  document.title = `${profile.name} | الملف الرقمي`;
+  setText("profileName", profile.name);
+  setText("profileTitle", profile.title);
+  setText("profileAbout", profile.about);
+  setText("currentYear", new Date().getFullYear());
+
+  const image = byId("profileImage");
+  image.src = profile.type === "company" ? profile.logo : profile.photo;
+  image.alt = profile.type === "company"
+    ? `شعار ${profile.name}`
+    : `صورة ${profile.name}`;
+  image.classList.toggle("company-logo", profile.type === "company");
+
+  const logoUrl = profile.logo?.trim();
+  document.querySelectorAll(".brand-mark").forEach((mark) => {
+    const logo = mark.querySelector(".brand-logo");
+    if (!logo || !logoUrl) return;
+    mark.classList.add("has-logo");
+    logo.addEventListener("error", () => mark.classList.remove("has-logo"), { once: true });
+    logo.src = logoUrl;
+  });
+
+  setExternalLink(byId("callBtn"), profile.phone ? `tel:${profile.phone}` : "");
+  setExternalLink(byId("whatsappBtn"), profile.whatsapp
+    ? `https://wa.me/${profile.whatsapp.replace(/\D/g, "")}`
+    : "");
+  setExternalLink(byId("emailBtn"), profile.email ? `mailto:${profile.email}` : "");
+  setExternalLink(byId("websiteBtn"), profile.website);
+  setExternalLink(byId("locationBtn"), profile.location);
+  const vcardButton = byId("vcardBtn");
+  vcardButton.href = URL.createObjectURL(
+    new Blob([createVCard()], { type: "text/vcard;charset=utf-8" })
+  );
+  vcardButton.download = "contact.vcf";
+
+  const socialLabels = {
+    facebook: "فيسبوك",
+    instagram: "إنستغرام",
+    linkedin: "لينكدإن",
+    x: "X",
+    tiktok: "تيك توك",
+    youtube: "يوتيوب"
+  };
+  const socialContainer = byId("socialLinks");
+
+  Object.entries(profile.social || {}).forEach(([network, url]) => {
+    if (!url || !socialLabels[network]) return;
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = socialLabels[network];
+    socialContainer.appendChild(link);
+  });
+}
+
+function createCardImage(src, alt, className = "card-image") {
+  const image = document.createElement("img");
+  image.className = className;
+  image.src = src;
+  image.alt = alt || "";
+  image.loading = "lazy";
+  image.addEventListener("error", () => {
+    image.hidden = true;
+  }, { once: true });
+  return image;
+}
+
+function showMessage(id, message) {
+  const element = byId(id);
+  element.textContent = message;
+  element.hidden = false;
+}
+
+function renderProducts(data) {
+  const categories = Array.isArray(data.categories) ? data.categories : [];
+  const categoryButtons = byId("categoryButtons");
+  const productsList = byId("productsList");
+
+  if (categories.length === 0) {
+    showMessage("productsMessage", "لا توجد خدمات معروضة حاليًا.");
+    return;
+  }
+
+  function showCategory(category) {
+    productsList.replaceChildren();
+    category.items.forEach((product) => {
+      const card = document.createElement("article");
+      card.className = "product-card";
+      card.appendChild(createCardImage(product.image, product.title));
+
+      const content = document.createElement("div");
+      content.className = "card-content";
+      const label = document.createElement("span");
+      label.className = "card-label";
+      label.textContent = category.name;
+      const title = document.createElement("h3");
+      title.textContent = product.title;
+      const description = document.createElement("p");
+      description.textContent = product.description;
+      content.append(label, title, description);
+
+      if (product.price) {
+        const price = document.createElement("p");
+        price.className = "card-label";
+        price.textContent = product.price;
+        content.appendChild(price);
+      }
+
+      if (product.link) {
+        const link = document.createElement("a");
+        link.className = "card-link";
+        link.href = product.link;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "اكتشف الخدمة ";
+        const arrow = document.createElement("span");
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "↗";
+        link.appendChild(arrow);
+        content.appendChild(link);
+      }
+
+      card.appendChild(content);
+      productsList.appendChild(card);
+    });
+  }
+
+  categories.forEach((category, index) => {
+    const button = document.createElement("button");
+    button.className = "category-btn";
+    button.type = "button";
+    button.textContent = category.name;
+    button.setAttribute("aria-pressed", String(index === 0));
+    if (index === 0) button.classList.add("active");
+    button.addEventListener("click", () => {
+      categoryButtons.querySelectorAll(".category-btn").forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
+      showCategory(category);
+    });
+    categoryButtons.appendChild(button);
+  });
+
+  showCategory(categories[0]);
+}
+
+function formatDate(dateValue) {
+  const date = new Date(`${dateValue}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return dateValue || "";
+  return new Intl.DateTimeFormat("ar", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }).format(date);
+}
+
+function renderArticles(data) {
+  const articles = Array.isArray(data.articles) ? data.articles : [];
+  const articlesList = byId("articlesList");
+
+  if (articles.length === 0) {
+    showMessage("articlesMessage", "لا توجد مقالات منشورة حاليًا.");
+    return;
+  }
+
+  articles.forEach((article) => {
+    const card = document.createElement("article");
+    card.className = "article-card";
+    card.appendChild(createCardImage(article.image, article.title));
+
+    const content = document.createElement("div");
+    content.className = "card-content";
+    const date = document.createElement("time");
+    date.className = "article-date";
+    date.dateTime = article.date || "";
+    date.textContent = formatDate(article.date);
+    const title = document.createElement("h3");
+    title.textContent = article.title;
+    const summary = document.createElement("p");
+    summary.textContent = article.content;
+    content.append(date, title, summary);
+    card.appendChild(content);
+    articlesList.appendChild(card);
+  });
+}
+
+async function loadJson(path, render, messageId) {
+  try {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`تعذر تحميل ${path}: ${response.status}`);
+    }
+    render(await response.json());
+  } catch (error) {
+    console.error(error);
+    showMessage(messageId, "تعذر تحميل المحتوى. تأكد من تشغيل الموقع عبر خادم ويب.");
+  }
+}
+
+function renderQrCode() {
+  if (typeof QRCode === "undefined") {
+    showMessage("shareFeedback", "تعذر تحميل أداة رمز QR. تحقق من اتصال الإنترنت.");
+    return;
+  }
+
+  new QRCode(byId("qrcode"), {
+    text: window.location.href,
+    width: 132,
+    height: 132,
+    colorDark: "#254736",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+}
+
+function setupShare() {
+  const feedback = byId("shareFeedback");
+  byId("shareLink").addEventListener("click", async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: profile.name,
+          text: "تعرّف على الملف الرقمي",
+          url: window.location.href
+        });
+        feedback.textContent = "تم فتح خيارات المشاركة.";
+        return;
+      }
+      await navigator.clipboard.writeText(window.location.href);
+      feedback.textContent = "تم نسخ رابط الملف إلى الحافظة.";
+    } catch (error) {
+      if (error.name === "AbortError") return;
+      console.error("تعذرت مشاركة رابط الملف.", error);
+      feedback.textContent = "تعذرت المشاركة. يمكنك نسخ رابط الصفحة من المتصفح.";
+    }
+  });
+
+  byId("downloadQr").addEventListener("click", () => {
+    const canvas = byId("qrcode").querySelector("canvas");
+    const image = byId("qrcode").querySelector("img");
+    const downloadLink = document.createElement("a");
+    downloadLink.download = "ahmed-digital-profile-qr.png";
+
+    if (canvas) {
+      downloadLink.href = canvas.toDataURL("image/png");
+    } else if (image) {
+      downloadLink.href = image.src;
+    } else {
+      feedback.textContent = "رمز QR غير جاهز للتحميل بعد.";
+      return;
+    }
+
+    downloadLink.click();
+  });
+}
+
+renderProfile();
+renderQrCode();
+setupShare();
+loadJson("products.json", renderProducts, "productsMessage");
+loadJson("articles.json", renderArticles, "articlesMessage");

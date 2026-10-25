@@ -1,69 +1,24 @@
-// هذا هو مستودع البيانات المرن للملف الرقمي الذكي
-const dynamicProfileConfig = {
-    
-    // 1. إعدادات النظام والألوان (تتحكم في شكل القالب)
-    metadata: {
-        accountType: "organization", // اكتب "person" للملف الشخصي أو "organization" للشركات
-        themeColor: "#2563eb",       // كود اللون الأساسي للموقع (مثلاً الأزرق الافتراضي)
-        lang: "ar",                  // لغة الموقع (العربية)
-        direction: "rtl"             // اتجاه الموقع من اليمين إلى اليسار
-    },
+const profile = {
+  type: "person", // person أو company
+  name: "أحمد شفيق إسماعيل",
+  title: "مراقب جوده ومشرف دعاية وإعلان",
+  about: "تقديم خدمات الدعاية والإعلان وحلول الطباعة للمشاريع المختلفه والمؤسسات والشركات والأفراد بأحدث الطرق والوسائل الإعلانيه والتسويقيه الحديثه وبأقل التكاليف وبأعلى جودة ممكنه",
 
-    // 2. البيانات الشخصية أو بيانات المؤسسة الأساسية
-    identity: {
-        name: "شركة النخبة للحلول الرقمية", // الاسم المكتوب في أعلى الصفحة
-        subtitle: "تطوير البرمجيات والاستشارات التقنية", // السطر الصغير تحت الاسم
-        bio: "نحن مؤسسة متخصصة في تحويل الأفكار إلى منتجات رقمية مبتكرة، نساعد الشركات على النمو والتموضع الرقمي الصحيح في السوق.", // نبذة مختصرة
-        logoOrAvatar: "assets/identity-img.jpg" // اسم ومسار الصورة الشخصية أو اللوجو
-    },
-    
-    // 3. أزرار الاتصال السريع (الرقم أو الرابط الفارغ "" يختفي من الموقع تلقائياً)
-    quickContact: {
-        phone: "+201012345678", // رقم الهاتف للاتصال المباشر
-        whatsapp: "201012345678", // رقم الواتساب بكود الدولة وبدون أصفار أو علامة +
-        email: "contact@elitenetwork.com", // البريد الإلكتروني
-        website: "https://elitenetwork.com", // الموقع الإلكتروني إن وجد
-        locationMap: "https://google.com" // رابط موقعك على خرائط جوجل
-    },
-    
-    // 4. روابط شبكات التواصل الاجتماعي
-    socialLinks: {
-        facebook: "https://facebook.com",
-        instagram: "https://instagram.com",
-        linkedin: "https://linkedin.com",
-        twitter: "https://x.com",
-        tiktok: "", // تركته فارغاً لأنه لن يظهر أيقونة تيك توك في هذا الملف
-        youtube: "https://youtube.com"
-    },
+  logo: "https://i.ibb.co/67JzzDHt/illusion-plus-logo-cover.png",
+  photo: "https://i.ibb.co/jZ4cfhFn/01.png",
 
-    // 5. قائمة المنتجات والخدمات (يمكنك إضافة منتجات أخرى باتباع نفس الطريقة)
-    products: [
-        {
-            id: "prod-1",
-            title: "تطوير المواقع والمنصات",
-            category: "الخدمات البرمجية",
-            description: "بناء مواقع متجاوبة وسريعة متوافقة مع محركات البحث وأنظمة الـ AI.",
-            price: "تبدأ من 500$",
-            image: "products/web-dev.jpg" // مسار صورة المنتج
-        },
-        {
-            id: "prod-2",
-            title: "كروت التعريف الذكية NFC",
-            category: "المنتجات التقنية",
-            description: "تصميم وبرمجة بطاقات الهوية الرقمية للموظفين والشركات بدون اشتراكات.",
-            price: "25$ للكارت",
-            image: "products/nfc-card.jpg" // مسار صورة المنتج الثاني
-        }
-    ],
+  phone: "+201017185600",
+  whatsapp: "+201017185600",
+  email: "shafik.art@gmail.com",
+  website: "https://ahmedshafik777.github.io/AhmedDigital-profile/",
+  location: "https://www.google.com/maps/place/30%C2%B007'30.4%22N+31%C2%B020'49.0%22E/@30.1251164,31.3443683,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.1251164!4d31.3469432?hl=en&entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
 
-    // 6. قائمة المقالات أو النصائح والمعلومات التعريفية
-    articles: [
-        {
-            id: "art-1",
-            title: "أهمية التحول الرقمي للشركات الناشئة عام 2026",
-            date: "2026-10-24",
-            summary: "استعراض شامل لأبرز الأدوات البرمجية المجانية وكيفية توظيف الذكاء الاصطناعي لتقليل النفقات التأسيسية.",
-            image: "articles/digital-transformation.jpg" // مسار صورة المقال
-        }
-    ]
+  social: {
+    facebook: "https://www.facebook.com/Ahmed.Shafik.Ismail/",
+    instagram: "",
+    linkedin: "https://www.linkedin.com/public-profile/settings/?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BvnMa9runSvytMnfAgBCtbw%3D%3D",
+    x: "",
+    tiktok: "",
+    youtube: ""
+  },
 };
